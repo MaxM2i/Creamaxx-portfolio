@@ -1,0 +1,129 @@
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Antic Slab', serif; */
+    
+    color: #f1f1f1;
+}
+/*
+[class^=line] Commence par 
+[class$=line] Fini par 
+[class*=line] contient
+--val
+calcul()
+not(last-child)
+*/
+.fond{
+    background-image: url(sam.jpg);
+    background-size: cover;
+    filter: brightness(40%) blur(4px);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    position: fixed;
+    
+}
+.top-line{
+    position: absolute;
+    width: 80vw;
+    height: 1px;
+    border: 2px solid #f1f1f1;
+    background-color: #f1f1f1;
+    margin: 40px 10px;
+}
+.left-line{
+    position: absolute;
+    width: 1px;
+    height: 80vh;
+    border: 2px solid #f1f1f1;
+    background-color: #f1f1f1;
+    margin: 10px 40px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: start;
+    flex-wrap: wrap;
+    height: 100vh;
+    margin-left: 100px;
+}
+.content h1{
+    width: 100%;
+    font-size: 10vh;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+.hrline{
+    width: 60vw;
+    height: 4px;
+    /* border: 2px solid #f1f1f1; */
+    background-color: #f1f1f1;
+    margin-bottom: 50px;
+}
+.Description{
+    width: 60vw;
+    font-size: 4vh;
+}
+.avatar{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    height: 12vh;
+    width: 10vw;
+    background-image: url(Avatar_Max-02.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+    
+}
+.social{
+    position: absolute;
+    top: 35vh;
+    right: 0;
+    width: 70px;
+    height: 35vh;
+    background-color: #f1f1f163;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    overflow: hidden;
+}
+.Description span{
+    display: inline-block;
+    margin-right: 10px;
+}
+h1 span{
+    display: inline-block;
+    margin-right: 20px;
+}
+a{
+    display: inline-block;
+}
+.sprite{
+    background-image: url(Untitled.png);
+    background-size: 256px 256px;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+}
+.face{
+    background-position-x: 0;
+}
+.Whats{
+    background-position-x: -60px;
+}
+.linked{
+    background-position-x: -60px;
+    background-position-y: -70px;
+}
+.inst{
+    background-position-y: -80px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxime Danion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div class="fond"></div>
+        <div class="top-line"></div>
+        <div class="left-line"></div>
+        <section class="content">
+            <h1><span>Maxime</span><span> DANION</span></h1>
+            <div class="hrline"></div>
+            <div class="Description">
+            <span>WebDesigner  </span><span>et </span><span>Développeur </span><span>en </span><span>programmation </span><span>informatique</span><span style="margin-left: -10px;">.</span>
+            </div>
+            <div class="avatar"></div>
+            <div class="social">
+                <a href="#"><span class="sprite face" title="Facebook"></span></a>
+                <a href="#"><span class="sprite Whats" title="WhatsApp"></span></a>
+                <a href="#"><span class="sprite linked" title="LinkedIn"></span></a>
+                <a href="#"><span class="sprite inst" title="Instagram"></span></a>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        window.addEventListener('load',init);
+        function init(){
+            const TL = gsap.timeline({repeat: -1});
+            TL.from('.top-line', {width: 0, autoAlpha: 0 })
+                .from('.left-line', {height: 0, autoAlpha: 0 })
+                .from('h1 span', {y: -200, autoAlpha: 0, stagger: 0.2 })
+                .from('.avatar', {y: 200, x: -200, scale: 0, rotate: -360, autoAlpha: 0 })
+                .from('.hrline', {width: 0, autoAlpha: 0 })
+                .from('.Description span', {x: -50, y: 50, autoAlpha: 0, stagger: 0.2 })
+                .from('.social', {width: 0, autoAlpha: 0, display: 'none' })
+                .from('.social a', {x: 50, autoAlpha: 0, stagger: 0.2 })
+                .to('.avatar',{scale: 1, delay: 5} )
+        }
+    </script>
+</body>
+</html>

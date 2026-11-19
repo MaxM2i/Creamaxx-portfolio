@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="content">
+        <div class="logo">
+            <img src="./assets/Logo_NIKE.svg" alt="">
+        </div>
+        <div class="contentlink">
+            <div class="navlien">
+                <a href="" class="navlink">Nouveautés</a>
+                <a href="" class="navlink">Homme</a>
+                <a href="" class="navlink">Femme</a>
+                <a href="" class="navlink">Enfant</a>
+                <a href="" class="navlink">Promotions</a>
+                <a href="" class="navlink">Collections</a>
+            </div>
+            <div class="search">
+                <label for="s"><span class="material-icons-outlined">
+                    search
+                </span></label>
+                <input type="search" placeholder="Rechecher" name="s">
+            </div>
+        </div>
+        <div class="icones">
+            <span class="material-icons-outlined">
+                favorite_border
+            </span>
+            <span class="material-icons-outlined">
+                shopping_bag
+            </span>
+        </div>
+    </header>
+    <main class="content">
+        <div class="images">
+        </div>
+        
+    </main>
+    <div class="imagesx6">
+        <img src="./assets/jumbo/jumbo-0.webp" alt="">
+        <img src="./assets/jumbo/jumbo-1.webp" alt="">
+        <img src="./assets/jumbo/jumbo-2.webp" alt="">
+        <img src="./assets/jumbo/jumbo-3.webp" alt="">
+        <img src="./assets/jumbo/jumbo-4.webp" alt="">
+        <img src="./assets/jumbo/jumbo-5.webp" alt="">
+        <h1>Nike Blazer low '77 Jumbo</h1>
+        <h3>Chaussure pour femme</h3>
+        <div class="cacheOpa">
+            <h2>94,99 €</h2>
+        </div>
+    </div>
+    <!-- <div class="footer"></div> -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script>
+        spliText('.imagesx6 h1');
+        const TL = gsap.timeline();
+        TL.to('.logo', {x: '55vw', y: '45vh', duration: 0, scale: 4 })
+            .to('.logo', { duration: 0.6, autoAlpha: 0.1, repeat: 3, yoyo: true})
+            .to('.logo', {x: '45vw', duration: 1, scale: 1, autoAlpha: 1 })
+            .to('.logo', {x: 0, y: '5vh', duration: 1 })
+            .from('.images', { duration: 1, autoAlpha: 0}, "-=0.5")
+            .from('header' , {height: 0, ease: 'bounce'}, "-=0.5")
+            .to('.logo', { y: 0 }, "-=0.5")
+            .from('.navlien a', {y: -50, duration: 1, autoAlpha: 0, stagger: 0.2, ease: 'bounce' })
+            .to('.navlien a', {x: 100, duration: 2, stagger: 0.3 })
+            .from('.search', {y: -50, duration: 1, autoAlpha: 0, ease: 'bounce' }, "-=0.5")
+            .to('.search', {width: "30%", duration: 1, ease: 'bounce' })
+            .to('.navlien a', {x: -50, duration: 1, ease: 'bounce' }, "-=1")
+            .from('.icones span', {y: -50, duration: 1, autoAlpha: 0, stagger: 0.3, ease: 'bounce' }, "-=1")
+            
+        const TLScroll = gsap.timeline({
+            scrollTrigger:{
+                trigger: '.imagesx6',
+                //markers: true,
+                //start: '-20% center',
+                //end: 'bottom bottom',
+                pin: true,
+                scrub:1,
+            }
+        });
+        TLScroll
+                .from('.imagesx6 h1', {x: -150, duration: 1, autoAlpha: 0, 'z-index': 2 })
+                .to('h1 span', {y: 0, autoAlpha: 1, stagger: 0.4 })
+                .from('.imagesx6 h3', {y: 150, duration: 1, autoAlpha: 0, 'z-index': 2 })
+                .to('.imagesx6 img', {x: 0, y: 0, scale: 1, duration: 10, autoAlpha: 1, rotateY: 0, stagger: 1 })
+                .from('.cacheOpa', { duration: 1, autoAlpha: 0, delay: 3})
+                //.to('.imagesx6 h1, .imagesx6 h3', {duration: 0, autoAlpha: 0 })
+                .to('.imagesx6 h1', {color: '#fff', y: 100, duration: 0.3, 'z-index': 1, autoAlpha: 1 })
+                .to('.imagesx6 h3', {color: '#fff', y: 100, duration: 0.3, 'z-index': 1, autoAlpha: 1 })
+                
+        function spliText (tag) {
+            const balise = document.querySelector(tag);
+            const textComplet = balise.innerText;
+            const split = textComplet.split('');
+
+            let tab = [];
+            for (let el of split) {
+                if(el === ' ') el = '&nbsp;';
+                tab.push(`<span>${el}</span>`);
+            }
+            balise.innerHTML = tab.join('');
+        }
+        
+    </script>
+</body>
+</html>

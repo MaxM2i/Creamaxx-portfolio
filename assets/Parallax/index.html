@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax</title>
+    <style>
+        
+        *, ::before, ::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        main section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        main section div.bloc {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* border: 1px solid #000; */
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <div class="bloc"></div>
+        </section>
+        <section>
+            <div class="bloc"></div>
+        </section>
+        <section>
+            <div class="bloc"></div>
+        </section>
+        <section>
+            <div class="bloc"></div>
+        </section>
+        <section>
+            <div class="bloc"></div>
+        </section>
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script>
+        const sections = gsap.utils.toArray('section');
+        
+        sections.forEach((section, index) => {
+            const bloc = section.querySelector('.bloc');
+            const image = `https://picsum.photos/${innerWidth}/${innerHeight}?random=${index}`;
+            bloc.style.backgroundImage = `url(${image})`;
+        
+            if (index === 0) {
+                bloc.style.backgroundPosition = '50% 0';
+                gsap.to(bloc, {
+                    backgroundPosition: `50% ${innerHeight / 2}px`,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: section,
+                        scrub: true,
+                        start: 'top top',
+                        end: 'bottom top'
+                    }
+                })
+            }else{
+                bloc.style.backgroundPosition = `50% ${-innerHeight / 2}px`;
+                gsap.to(bloc, {
+                    backgroundPosition: `50% ${innerHeight / 2}px`,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: section,
+                        scrub: true,
+                    }
+                })
+            }
+        
+        });
+        </script>
+</body>
+</html>
