@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            width: 40px;
+            height: 30px;
+            border-radius: 12px;
+            border: none;
+            background-color: rgb(51, 3, 3);
+            color: white;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .btn:hover{
+            background-color: rgb(121, 6, 6);
+        }
+        .btnActif{
+            background-color: aqua;
+            color: rgb(146, 11, 11);
+        }
+        .btnActif:hover{
+            cursor: default;
+            background-color: aqua;
+            color: rgb(146, 11, 11);
+        }
+        #loader{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.3);
+            display: none;
+        }
+        #loader > div{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        #loader > div > div {
+            width: 22px;
+            height: 100px;
+            margin: 20px;
+	        border-radius: 8px;
+            background-color: white;
+	        animation: blink 500ms alternate infinite -300ms;
+        }
+
+        #loader > div > div:nth-child(1) {
+	        animation-delay: 100ms;
+        }
+
+        #loader > div > div:nth-child(2) {
+	        animation-delay: 200ms;
+        }
+        #loader > div > div:nth-child(3) {
+	        animation-delay: 300ms;
+        }
+
+        @keyframes blink {
+	        from {
+                height: 10px;
+	        }
+	        to {
+                height: 100px;
+	        }
+        }
+    </style>
+</head>
+<body>
+    <div id="loader">
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div id="pagination" style="text-align: center;"></div>
+    <div id="movies" style="display:flex; justify-content: space-beetween; flex-wrap: wrap;"></div>
+    <script>
+        const API = "f025473d1c83233bb03c489009122cbe";
+        const divMovies = document.querySelector("#movies");
+        const pagination = document.querySelector("#pagination");
+        const loader = document.getElementById("loader");
+        const nbrPage = 20;
+        let num = 1;
+
+        function rempliPagination(){
+            let str = "";
+            for (let i = 0; i < nbrPage; i++) {
+                if(i == 0) {
+                    str += `<button id="btn${i+1}" class="btn btnActif" data-page="${i + 1}">${i+1}</button>`;
+                }else{
+                    str += `<button id="btn${i+1}" class="btn" data-page="${i + 1}">${i+1}</button>`;
+                }
+                
+            }
+            pagination.innerHTML = str;
+        }
+        rempliPagination();
+        document.querySelectorAll(".btn").forEach((button) => {
+            button.addEventListener('click', (e) => {
+                num = e.target.dataset.page;
+                //alert(num)
+                for (let i = 1; i <= nbrPage; i++) {
+                    if(i == num) {
+                        document.getElementById("btn"+i).classList.add("btnActif");
+                        //alert(num)
+                    }else{
+                        document.getElementById("btn"+i).classList.remove("btnActif");
+                    }
+                }
+                
+                
+                getMovies(num);
+            });
+        });
+        
+        function getMovies(page = 1) {
+            loader.style.display = "block";
+        ajaxGet(page)
+            .then((list) => {
+                let str = "";
+                for (const movie of list) {
+                    str += formatHTML(movie);
+                }
+                divMovies.innerHTML = str;
+                loader.style.display = "none";
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+
+        getMovies();
+
+        async function ajaxGet (page = 1) {
+            const getMovies = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API}&language=fr-FR&page=${page}`);
+            const json = await getMovies.json();
+            return json["results"]
+            //console.log(movies);
+            /*for (const movie of movies) {
+                document.write('<img src="https://image.tmdb.org/t/p/w500'+movie.poster_path+'" width="200px">')
+            }*/
+        };
+        
+        function formatHTML(movie){
+            return `<div class="movie" style="text-align: center; width:20%">
+                        <h4>${movie.title}</h4>
+                        <figure>
+                            <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}">
+                            <div class="note">Note : ${movie.vote_average}/10</div>
+                            <!-- <figcaption>${movie.overview}</figcaption> -->
+                        </figure>
+                    </div>`;
+            
+        }
+        /*ajaxGet(1);
+        ajaxGet(2);
+        ajaxGet(3);
+        ajaxGet(4);
+        ajaxGet(5);*/
+        // fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API}&language=fr-FR&page=1`)
+        //     .then((result) => result.json())
+        //     .then((json) => {
+        //         console.log(json);
+        //     })
+    </script>
+</body>
+</html>

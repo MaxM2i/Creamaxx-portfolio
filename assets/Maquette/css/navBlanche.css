@@ -1,0 +1,72 @@
+nav ul#menu {
+    
+    list-style-type: none;
+    height: 50px;
+    padding: 0 20px;
+    list-style: none;
+    font: 14px Tahoma;
+    border-radius: 20px 0 0 20px;
+    margin-left: 20px;
+    background-color:rgba(255, 255, 255, 0.7);
+    /*background: -webkit-linear-gradient(top, rgb(204, 0, 51), rgb(153, 0, 0));*/
+}
+
+nav ul#menu li {
+    float: left;
+}
+
+nav ul#menu li a {
+    display: block;
+    position: relative;
+    z-index: 1;
+    padding: 0 20px;
+    line-height: 50px;
+    text-shadow: 2px 2px 5px black;
+    font-size: 16px;
+    left: 0;
+    text-decoration: none;
+
+    /* webkit gradient background 
+    background: -webkit-linear-gradient(top, rgb(204, 0, 51), rgb(153, 0, 0));*/
+}
+
+nav ul#menu li a:before {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    
+    /* webkit gradient background */
+    background: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(132, 174, 187));
+
+    /* webkit transition */
+    -webkit-transition: all 750ms linear;
+
+    /* before hack */
+    content: ".";
+    text-indent: -99999px;
+}
+
+nav ul#menu li a:hover:before {
+    opacity: 1;
+}
+nav ul#menu li a:active:before {
+    opacity: 1;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(80, 92, 95, 0.5));
+}
+a{
+    color: rgb(0, 0, 0);
+  }
+  a:hover {
+    opacity: 1;
+    color: rgb(6, 19, 206);
+  }
+  a:active {
+    opacity: 1;
+    color: rgb(53, 4, 117);
+    /*background: -webkit-linear-gradient(top, rgb(255, 55, 204), rgb(0, 111, 145));*/
+  }

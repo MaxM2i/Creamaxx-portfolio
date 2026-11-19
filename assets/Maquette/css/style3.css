@@ -1,0 +1,252 @@
+@charset "UTF-8";
+body{
+  /*max-width: max-content;
+  margin: auto;*/
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  background-color:#336699;
+}
+header{
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height:250px;
+  background-image: url(../imgs/headerImg.jpg);
+  background-size: cover;
+  /*background: linear-gradient(180deg, rgba(0,200,147,1) 0%, rgba(28,121,9,1) 30%, rgba(255,255,255,0.3) 100%);*/
+  border-radius: 40px 40px 0 0;
+}
+main{
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 1000px;
+  /*background: linear-gradient(0deg, rgba(0,200,147,1) 0%, rgba(28,121,9,1) 64%, rgba(255,255,255,0.3) 100%);*/
+  border-radius: 0 0 20px 20px;
+}
+footer{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  width: 1200px;
+  height: 600px;
+  background-color: rgba(250,250,250,0.6);
+  border-radius: 20px;
+}
+.section_G{
+  width: 700px;
+  height: 1000px;
+  float: left;
+  background-color:rgba(255, 255, 255, 0.5)
+}
+.section_D{
+  margin-left: 30px;
+  width: 470px;
+  height: 1000px;
+  float: left;
+  background-color:rgba(255, 255, 255, 0.5)
+}
+#logo{
+  float: left;
+  width: 150px;
+  height: 150px;
+  margin-left: 20px;
+  margin-top: 20px;
+  background-image: url(../imgs/PetitLogo.png);
+  background-size: cover;
+}
+.illust01{
+  -webkit-box-shadow: 10px 10px 20px 12px #424242;
+  box-shadow: 10px 10px 20px 12px #424242;
+  margin: 50px;
+  width: 600px;
+  height: 419px;
+  float: left;
+  background-color: pink;
+}
+.illust02{
+  width: 450px;
+  display: flex;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(125, 238, 250);
+  text-align: center;
+  color: #fff;
+  font-size: large;
+}
+.illust03{
+  width: 1200px;
+  display: flex;
+  margin-top: 5px;
+  margin-left: 50px;
+  /*margin-right: auto;*/
+}
+.separation{
+  width: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.redac01{
+  margin: 0 50px 50px 50px;
+  width: 600px;
+  height: 400px;
+  float: left;
+  color: white;
+}
+.redac02{
+  margin: 0 35px 50px 35px;
+  width: 400px;
+  height: auto;
+  float: left;
+  color: white;
+}
+.img_mod4
+{
+width: 450px;
+height: 180px;
+float: left;
+margin-top: 10px;
+margin-left: 100px;
+background-color: rgb(14, 1, 254);
+text-align: center;
+color: #fff;
+font-size: large;
+}
+.img_mod5
+{
+width: 280px;
+height: 180px;
+float: right;
+margin-top: 10px;
+margin-right: 100px;
+background-color: rgb(254, 81, 1);
+text-align: center;
+color: #fff;
+font-size: large;
+}
+h2{
+  text-shadow: 2px 2px 5px black;
+}
+:root{
+  --hauteur-menu: 50px;
+}
+
+/*nav{
+  margin: 0px;
+  padding: 0px;
+  float: right;
+  margin-top: 185px;
+  width: 600px;
+  height:50px;
+  /*background-color: rgba(250,250,250,0.6);
+}*/
+nav {
+  width: 100%;
+  font-size: 18px;
+  float: right;
+  margin-top: 180px;
+  width: 600px;
+}
+
+nav > ul {
+  display: flex;
+  text-align: center;
+  height: var(--hauteur-menu);
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav > ul > li {
+  background-color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  height: 100%;
+  flex: 1;
+}
+
+nav > ul > li:hover > a{
+  color: #2169EC;
+}
+
+nav > ul > li > a {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+li a {
+  text-decoration: none;
+  color: black;
+}
+.menu-deroulant > a:after{
+  /*content: '❯';*/
+  content: '❯';
+  font-size: 12px;
+  margin-left: 7px;
+  display: inline-block;
+}
+
+.menu-deroulant:hover > a:after{
+  animation: rotationFleche 0.2s linear forwards;
+}
+
+@keyframes rotationFleche {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  100%{
+    transform: rotate(90deg);
+  }
+}
+
+.sous-menu {
+  margin-top: var(--hauteur-menu);
+  width: 100%;
+  text-align: left;
+  overflow: hidden;
+  max-height: 0;
+  border-radius: 2px;
+  background-color: white;
+}
+
+.menu-deroulant:hover > .sous-menu {
+  padding: 0px;
+  animation: apparitionSousMenu 2s forwards;
+}
+
+@keyframes apparitionSousMenu {
+  0% {
+    box-shadow: 0px 3px 3px 1px rgba(0,0,0,0);
+    border-top: 3px solid #2169EC;
+  }
+  30% {
+    box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
+  }
+  100% {
+    max-height: 50em;
+    border-top: 3px solid #2169EC;
+    box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
+  }
+}
+
+.sous-menu > li:hover {
+  background-color: rgba(33, 105, 236, 0.3);
+}
+
+.sous-menu > li > a {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  padding-left: 20px;
+  width: 100%;
+}
+
+.sous-menu > li:hover > a {
+  color: white;
+}

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        h1{
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgb(0, 0, 0);
+        }
+        .bg{
+            margin: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-position: center;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+            filter: blur(4px) brightness(70%);
+            z-index: -1;
+        }
+        .btn{
+            width: 40px;
+            height: 30px;
+            border-radius: 12px;
+            border: none;
+            background-color: rgb(51, 3, 3);
+            color: white;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .btn:hover{
+            background-color: rgb(121, 6, 6);
+        }
+        .btnActif{
+            background-color: aqua;
+            color: rgb(146, 11, 11);
+        }
+        .btnActif:hover{
+            cursor: default;
+            background-color: aqua;
+            color: rgb(146, 11, 11);
+        }
+        .figure{
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            -webkit-box-shadow: 5px 5px 15px 5px #FFFFFF; 
+            box-shadow: 0px 0px 15px 5px #FFFFFF;
+            transition: all 300ms ease-in-out;
+        }
+        .image{
+            color: white;
+            margin: 20px;
+            text-align: center;
+            /* width:15vw;
+            height:20vh; */
+            width: 300px;
+            height: 200px;
+            
+        }
+        .info{
+            display: none;
+            text-align: center;
+            height: 100%;
+        }
+        .figure:hover .info{
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .figure .info div{
+            transform: translateY(40px);
+            transition: all 200ms ease-in-out;
+        }
+        .figure:hover .info div{
+            transform: translateY(0px);
+            transition: all 200ms ease-in-out;
+        }
+        .photos{
+            padding-bottom: 50px;
+            display:flex; justify-content: space-around; flex-wrap: wrap;
+            /*
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            /* 
+            */ 
+        }
+        #loader{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.3);
+            display: none;
+            z-index: 10;
+        }
+        #loader > div{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        #loader > div > div {
+            width: 22px;
+            height: 100px;
+            margin: 20px;
+	        border-radius: 8px;
+            background-color: white;
+	        animation: blink 500ms alternate infinite -300ms;
+        }
+
+        #loader > div > div:nth-child(1) {
+	        animation-delay: 100ms;
+        }
+
+        #loader > div > div:nth-child(2) {
+	        animation-delay: 200ms;
+        }
+        #loader > div > div:nth-child(3) {
+	        animation-delay: 300ms;
+        }
+
+        @keyframes blink {
+	        from {
+                height: 10px;
+	        }
+	        to {
+                height: 100px;
+	        }
+        }
+        /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <!-- <div id="loader">
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div> -->
+    <div class="bg"></div>
+    <h1>Photos API</h1>
+    <div id="pagination" style="text-align: center;"></div>
+    <div class="photos" id="movies"></div>
+    <!-- Trigger/Open The Modal -->
+<!-- <button id="myBtn">Open Modal</button> -->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+  </div>
+
+</div>
+
+    <script>
+        //const API = "f025473d1c83233bb03c489009122cbe";
+        const divMovies = document.querySelector("#movies");
+        const divBg = document.querySelector(".bg");
+        const pagination = document.querySelector("#pagination");
+        //const loader = document.getElementById("loader");
+        const nbrPage = 20;
+        const nbrLimit = 30;
+        let num = 1;
+
+        function rempliPagination(){
+            let str = "";
+            for (let i = 0; i < nbrPage; i++) {
+                if(i == 0) {
+                    str += `<button id="btn${i+1}" class="btn btnActif" data-page="${i + 1}">${i+1}</button>`;
+                }else{
+                    str += `<button id="btn${i+1}" class="btn" data-page="${i + 1}">${i+1}</button>`;
+                }
+                
+            }
+            pagination.innerHTML = str;
+        }
+        rempliPagination();
+        document.querySelectorAll(".btn").forEach((button) => {
+            button.addEventListener('click', (e) => {
+                num = e.target.dataset.page;
+                //alert(num)
+                for (let i = 1; i <= nbrPage; i++) {
+                    if(i == num) {
+                        document.getElementById("btn"+i).classList.add("btnActif");
+                        //alert(num)
+                    }else{
+                        document.getElementById("btn"+i).classList.remove("btnActif");
+                    }
+                }
+                
+                
+                getMovies(num);
+            });
+        });
+        
+        function getMovies(page = 1) {
+            //loader.style.display = "block";
+        ajaxGet(page)
+            .then((list) => {
+                let str = "";
+                for (const movie of list) {
+                    str += formatHTML(movie);
+                }
+                divMovies.innerHTML = str;
+                //loader.style.display = "none";
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+
+        getMovies();
+
+        async function ajaxGet (page = 1) {
+            const getMovies = await fetch(`https://picsum.photos/v2/list?page=${page}&limit=${nbrLimit}`);
+            const json = await getMovies.json();
+            divBg.style.backgroundImage = "url("+json[0].download_url+")";
+            console.log(json);
+            return json;
+            
+            //console.log(movies);
+            /*for (const movie of movies) {
+                document.write('<img src="https://image.tmdb.org/t/p/w500'+movie.poster_path+'" width="200px">')
+            }*/
+        };
+        
+        function formatHTML(img){
+            return `<div class="image">
+                        <div class="figure" style="background-image: url('${img.download_url}');" ">
+                            <div class="info" onclick="afficheModal(${img.download_url})">
+                                <div>${img.author}</div>
+                                <div>width : ${img.width} px</div>
+                                <div>height : ${img.height} px</div>
+                            </div>
+                            <!-- <img src="${img.download_url}" alt="${img.author}"> -->
+                        </div>
+                    </div>`;
+            
+        }
+        
+
+        const images = document.querySelector(".figure");
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        function afficheModal(url) {
+            alert(url);
+            modal.style.display = "block";
+            modal.style.backgroundImage = url(url);
+            
+        }
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

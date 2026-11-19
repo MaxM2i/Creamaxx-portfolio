@@ -1,0 +1,210 @@
+@font-face{
+    font-family: 'BallPark';
+    src :url('../fonts/ballpark.woff') format('woff');
+}
+body{
+    font-family: 'Nunito', sans-serif;
+    background-image: url(../imgs/bg.png);
+    margin: 0;
+}
+.container{
+    width: 1100px;
+    margin: auto;
+}
+.flex{
+    display: flex;
+}
+.centreFlex{
+    justify-content:center;
+    align-items: center;
+    padding-top: 50px;
+    font-size: 80px;
+}
+.logo h2{
+    font-family: 'BallPark', sans-serif;
+    font-size: 32px;
+}
+header{
+    justify-content: space-between;
+    align-items: center;
+}
+nav li{
+    display:inline;
+}
+nav li a{
+    text-transform: uppercase;
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+    transition: 0.5s;
+}
+nav li a:hover{
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
+}
+.lienCoul:hover{
+    background-color: rgb(35, 168, 68);
+}
+.lienCoul2:hover{
+    background-color: rgb(64, 35, 168);
+}
+.lienCoul3:hover{
+    background-color: rgb(168, 35, 161);
+}
+.active{
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
+}
+.active:hover{
+    background-color: #750000;
+}
+.borderHeader{
+    margin: 0px;
+    border-width: 2px;
+    background-color: #000;
+    border-style: solid;
+    position: relative;
+    top: 10px;
+}
+.bg-ny{
+    background-image: url(../imgs/new-york.jpg);
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    border-bottom-right-radius: 0;
+    box-shadow: 2px 8px 10px -2px #666;
+    
+}
+.bg-ny p{
+    margin: 0 0 10px 0;
+    color: #fff;
+}
+.bg-ny:before{
+    content: '';/* obligatoire pour que before fonctionne */
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 10px;
+    border-bottom-right-radius: 0;
+}
+.bg-desc{
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+.bg-ny a{
+    display: inline-block;/* pour que le lien tienne compte des marges */ 
+    text-decoration: none;
+}
+.button{
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 35px;
+    background-color: #000;
+    transition: 0.5s;
+    border: 2px solid #000;
+    
+}
+.button:hover{
+    background-color: transparent;
+    transition: 0.5s;
+    border: 2px solid #fff;
+}
+.avatar{
+    width: 80px;
+    display: block;
+    margin: auto;
+    border : 1px solid #000;
+}
+main article{
+    width: 75%;
+    padding-top: 10px;
+    margin-right: 20px;
+}
+main aside{
+    width: 25%;
+    background-color: #808080;
+    position: relative;
+    padding: 10px 20px;
+    color : #fff;
+    /*border : 1px solid #000;
+    border-top: 0px;*/
+    border-radius: 0 0 10px 10px;    
+    box-shadow: 2px 8px 10px -2px #666;
+}
+aside h2, article h1{
+    text-transform: uppercase;
+    font-size: 20px;
+}
+aside:before{
+    content: '';
+    background-image: url(../imgs/arrow.png);
+    width: 12px;
+    height: 18px;
+    position: absolute;
+    left:-12px;
+    top :80px;
+
+}
+main p {
+    text-align: justify;
+}
+.social a{
+    text-decoration: none;
+}
+.sprite{
+    background-image: url(../imgs/sprite.png);
+    background-size: 280px 82px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    transition: 0.5s;
+}
+.sprite:hover{
+    background-position-y: -40px;
+}
+.twit{
+    background-position-x: -40px;
+}
+.yout{
+    background-position-x: -80px;
+}
+.inst{
+    background-position-x: -120px;
+}
+.borderFooter{
+    margin-top: 25px;
+    border-width: 2px;
+    background-color: #000;
+    border-style: solid;
+}
+footer{
+    height: 150px;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+footer > div{
+    width: 33.33%;
+}
+footer > div h2{
+    text-transform: uppercase;
+    font-size: 18px;
+}
+footer ul{
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    list-style-image: url("../imgs/list-style.png");
+}
+footer ul a{
+    text-decoration: none;
+    color: #6b0004;
+}

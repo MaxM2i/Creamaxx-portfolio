@@ -1,0 +1,102 @@
+
+@charset "UTF-8";
+.linear-gradient {
+  margin-top: 20px;
+  width: auto;
+  height: 400px;
+  background:
+    linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+    linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+}
+.global{
+  width:1200px;
+  height: 1000px;
+  margin-left: auto;
+  margin-right:auto;
+  background:
+    linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+    linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+    /*animation: 1s ease-in 0s alternate move_eye;*/
+
+}
+body{
+  align-items: center;
+}
+.animD {
+  animation-name: glissementD;
+  animation: 1s ease-in 50ms;
+  /*animation-iteration-count: infinite;*/
+  /*animation-direction: reverse;*/
+  font-size: 50px;
+  color: blue;
+}
+.animG {
+  align-self: center;
+  animation: 1s ease-in 50ms;
+  animation-name: glissementG;
+  /*animation-iteration-count: infinite;
+  /*animation-direction: alternate;*/
+  font-size: 50px;
+  color: cyan;
+}
+@keyframes glissementG {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@keyframes glissementD {
+  from {
+    margin-left: -100%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+a{
+  color:magenta;
+  text-decoration: none;
+}
+a:hover{
+  color:cyan;
+}
+.polling_message {
+  color: white;
+  float: left;
+  margin-right: 2%;
+}
+
+.view_port {
+  background-color: black;
+  height: 30px;
+  width: 60%;
+  overflow: hidden;
+  margin-left:20%;
+  border-radius: 20px;
+}
+
+.cylon_eye {
+  background-color: red;
+  background-image:linear-gradient(to right, rgba( 0,0,0,0.9 ) 25%, rgba( 0,0,0,0.1 ) 50%, rgba( 0,0,0,0.9 ) 75%);
+  color: white;
+
+  height: 100%;
+  width: 40%;
+
+
+  -webkit-animation: 1s ease-in-out 0s infinite alternate move_eye;
+          animation: 1s ease-in-out 0s infinite alternate move_eye;
+}
+
+@-webkit-keyframes move_eye { from { margin-left:2%; } to { margin-left:60%; }  }
+        @keyframes move_eye { from { margin-left:2%; } to { margin-left:60%; }  }
